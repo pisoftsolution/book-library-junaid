@@ -1,0 +1,33 @@
+{
+  "name": "npm-init-example",
+  "version": "1.0.0",
+  "description": "Example package.json",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pisoftsolution/book-library-junaid.git"
+  },
+  "keywords": [
+    "example",
+    "package.json",
+    "npm",
+    "init"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pisoftsolution/book-library-junaid/issues"
+  },
+  "homepage": "https://github.com/pisoftsolution/book-library-junaid#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.6",
+    "nodemon": "^2.0.12"
+  }
+}

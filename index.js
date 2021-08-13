@@ -1,6 +1,7 @@
 const express = require("express"); 
 const mongoose = require("mongoose");
 const bookRoute = require("./routes/books")
+const categoryRoute = require("./routes/categories")
 const app = express();
 const cors = require('cors');
 
@@ -10,6 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
 app.use('/api/book' , bookRoute);
+app.use('/api/category' , categoryRoute);
 
 mongoose.connect(dbURI , {useNewUrlParser: true, useUnifiedTopology: true});
 

@@ -76,41 +76,53 @@ exports.DeleteBookById =  ( req , res ) => {
 }
 
 exports.getBooksByCategory =  ( req , res ) => {
-    BooksSchema.find({ category: req.body.category })
+    if (!req.query.category) {
+        return res.status(400).json({ msg: "You Need To Send The Category!" })
+    }
+    BooksSchema.find({ category: req.query.category })
     .then(b=> {
-        return res.status(200).json({ b: b })
+        return res.status(200).json({ b: b });
     })
     .catch(err => {
-        return res.status(400).json({ msg: err.message })
+        return res.status(200).json({ msg: err.message });
     })
 }
 
 exports.getBooksByPublisher =  ( req , res ) => {
-    BooksSchema.find({ publisher: req.body.publisher })
+    if (!req.query.publisher) {
+        return res.status(400).json({ msg: "You Need To Send The Publisher!" })
+    }
+    BooksSchema.find({ publisher: req.query.publisher })
     .then(b=> {
-        return res.status(200).json({ b: b })
+        return res.status(200).json({ b: b });
     })
     .catch(err => {
-        return res.status(400).json({ msg: err.message })
+        return res.status(200).json({ msg: err.message });
     })
 }
 
 exports.getBooksByAuthor =  ( req , res ) => {
-    BooksSchema.find({ author: req.body.author })
+    if (!req.query.author) {
+        return res.status(400).json({ msg: "You Need To Send The Author!" })
+    }
+    BooksSchema.find({ author: req.query.author })
     .then(b=> {
-        return res.status(200).json({ b: b })
+        return res.status(200).json({ b: b });
     })
     .catch(err => {
-        return res.status(400).json({ msg: err.message })
+        return res.status(200).json({ msg: err.message });
     })
 }
 
 exports.getBooksByAuthorAndYearPublished =  ( req , res ) => {
-    BooksSchema.find({ author: req.body.author, yearPublished: req.body.yearPublished })
+    if (!req.query.yearPublished || !req.query.author) {
+        return res.status(400).json({ msg: "You Need To Send The YearPublished!" })
+    }
+    BooksSchema.find({ yearPublished: req.query.yearPublished })
     .then(b=> {
-        return res.status(200).json({ b: b })
+        return res.status(200).json({ b: b });
     })
     .catch(err => {
-        return res.status(400).json({ msg: err.message })
+        return res.status(200).json({ msg: err.message });
     })
 }

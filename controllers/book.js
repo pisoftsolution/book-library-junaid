@@ -1,25 +1,31 @@
 const BooksSchema = require('../models/Book.Schema')
+const CategorySchema = require('../models/Categories.Schema')
 
-exports.addNewBooks =  ( req , res ) => {
+exports.addNewBooks = async ( req , res ) => {
     if ( !req.body.name ||!req.body.author || !req.body.publisher || !req.body.yearPublished || !req.body.category){
         res.status(400).json({msg:"Book Does Not Exist"});
     }
-    let bookdetails = new BooksSchema({
-        name : req.body.name,
-        author: req.body.author,
-        publisher : req.body.publisher,
-        yearPublished : req.body.yearPublished,
-        category : req.body.category,
-    });
-    bookdetails.save()
-    .then(b=>{
-        if (b) {
-            res.status(200).json({b});
-        }
-    })
-    .catch(err=>{
-        res.status(400).json({err});
-    })   
+    const category  = await CategorySchema.findById(req.body.category)
+    if (category) {
+        let bookdetails = new BooksSchema({
+            name : req.body.name,
+            author: req.body.author,
+            publisher : req.body.publisher,
+            yearPublished : req.body.yearPublished,
+            category : req.body.category,
+        });
+        bookdetails.save()
+        .then(b=>{
+            if (b) {
+                res.status(200).json({b});
+            }
+        })
+        .catch(err=>{
+            res.status(400).json({err});
+        }) 
+    } else {
+        res.status(400).json({msg: "Category does not exist"});
+    }
 }
 
 exports.getBookById =  ( req , res ) => {

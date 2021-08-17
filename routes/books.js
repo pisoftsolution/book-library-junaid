@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const books = require('../controllers/book');
 
-router.post('/add-new-books' , books.addNewBooks);
+router.post('/add-new-books' , books.addNewBooks); 
 router.get('/get-book-by-id' ,books.getBookById); 
 router.get('/view-all-books' ,books.getAllBooks);
 router.put('/edit-book-by-id' ,books.editBookById);
